@@ -26,6 +26,7 @@ class _ReistrationState extends State<Reistration_Last> {
       children: [
         IconButtonWidget(
           icon: Icons.arrow_back,
+          onpress: (){},
         ),
         SizedBox(
           height: 5*(SizeConfig.heightMultiplier),
