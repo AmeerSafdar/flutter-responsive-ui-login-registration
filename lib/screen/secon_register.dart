@@ -47,7 +47,7 @@ class _ReistrationState extends State<Reistration_Last> {
         ),
 
         DefaultButton(
-        btnTxt: 'REGSISTER',onpress: (){
+        btnTxt: 'REGISTER',onpress: (){
           Get.offAll(RegisterScreen());
         },
         ),

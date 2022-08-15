@@ -8,7 +8,8 @@ import 'package:bila_fiver/widget/iconButton.dart';
 import 'package:bila_fiver/widget/input_fileds.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 class AddPhoto extends StatefulWidget {
   const AddPhoto({ Key key }) : super(key: key);
 
@@ -17,6 +18,19 @@ class AddPhoto extends StatefulWidget {
 }
 
 class _AddPhotoState extends State<AddPhoto> {
+  File img;
+  var picked_image;
+  Future getImage(a) async{
+     if(a){
+    picked_image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    }
+    else{
+      picked_image = await ImagePicker().pickImage(source: ImageSource.camera) ;
+    }
+    setState(() {
+      img=picked_image;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +93,10 @@ class _AddPhotoState extends State<AddPhoto> {
                   right: 11.5*(SizeConfig.heightMultiplier),
                   child: Container(
                   child: IconButton(
-                    onPressed: (){},
+                    onPressed: (){
+                    image_picker_source(context);
+                     },
+                    
                    icon: Icon(Icons.add)),
                 ))
                 ],),
@@ -103,6 +120,58 @@ class _AddPhotoState extends State<AddPhoto> {
       ),
       
     );
+  }
+
+  Future<dynamic> image_picker_source(BuildContext context) {
+    return showDialog(context: context, builder: (context){
+              return AlertDialog(
+                title: Text("Choose option"),
+                content: SingleChildScrollView(
+                  child: ListBody(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap:(){
+                            
+                                getImage(false);
+                          },
+                          splashColor: kLightyellow,
+                          child: Row(
+                            children: [
+                              Icon(Icons.camera_alt_rounded,color: kyellow,),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Text("Camera",style: TextStyle(color: kLightyellow),),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                              onTap:(){
+                                getImage(true);
+                                },
+                          splashColor: kyellow,
+                          child: Row(
+                            children: [
+                              Icon(Icons.camera_sharp,color: kyellow,),
+                              Padding(
+                                padding: const EdgeInsets.only(left:8.0),
+                                child: Text("Gallery",style: TextStyle(color: kLightyellow),),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            });
   }
     
 }

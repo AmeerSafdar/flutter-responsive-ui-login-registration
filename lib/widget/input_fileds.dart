@@ -16,6 +16,10 @@ class InputFields extends StatelessWidget {
 
         ),
       child: TextFormField(
+        // controller: TextEditingController(),
+        // onChanged: (val){
+        //   print(val);
+        // },
         decoration: InputDecoration(
           hintText: '$hint',
           contentPadding:  EdgeInsets.symmetric(horizontal:2*( SizeConfig.heightMultiplier)),

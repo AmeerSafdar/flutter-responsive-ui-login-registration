@@ -67,6 +67,10 @@ class input_login_widget extends StatelessWidget {
         horizontal: 4*(SizeConfig.heightMultiplier),
         ),
       child: TextFormField(
+         // controller: TextEditingController(),
+        // onChanged: (val){
+        //   print(val);
+        // },
         decoration: InputDecoration(
           hintText: '$hint',
           contentPadding: EdgeInsets.all(0.2*(SizeConfig.heightMultiplier))
